@@ -25,8 +25,18 @@ type ProjectItem = {
   title: string;
   meta: string;
   description: string;
+  details: string;
+  highlights: string[];
   stack: string;
   variant: 'a' | 'b' | 'c';
+};
+
+type EducationItem = {
+  time: string;
+  degree: string;
+  school: string;
+  details: string;
+  highlights: string[];
 };
 
 type SkillBand = {
@@ -47,11 +57,11 @@ type Strength = {
 
 const navItems: { id: SectionId; label: string }[] = [
   { id: 'about', label: 'About' },
-  { id: 'subjects', label: 'Subjects' },
   { id: 'education', label: 'Education' },
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
   { id: 'skills', label: 'Skills' },
+  { id: 'subjects', label: 'Subjects' },
   { id: 'publications', label: 'Publications' },
   { id: 'contact', label: 'Contact' },
 ];
@@ -94,39 +104,60 @@ const favoriteSubjects: SubjectItem[] = [
   },
 ];
 
-const education = [
+const education: EducationItem[] = [
   {
     time: '09/2025 - Current',
     degree: "Master's Degree in Artificial Intelligence",
     school: 'Johannes Kepler University, Linz, Austria',
+    details:
+      'Placeholder: details about coursework, specialization focus, and thesis direction will be added here.',
+    highlights: [
+      'Placeholder: advanced AI coursework track',
+      'Placeholder: research focus and practical labs',
+      'Placeholder: ongoing thesis work summary',
+    ],
   },
   {
     time: '09/2022 - 06/2025',
     degree: "Bachelor's Degree in Informatics (Data Science & AI focus)",
     school: 'IMC University of Applied Sciences, Krems an der Donau',
+    details:
+      'Placeholder: this section will summarize core technical modules, capstone outcomes, and key project experience.',
+    highlights: [
+      'Placeholder: data science and AI specialization modules',
+      'Placeholder: practical software and analytics projects',
+      'Placeholder: bachelor-level capstone impact',
+    ],
   },
   {
     time: '09/2023 - 02/2024',
     degree: 'Exchange Semester in ICT',
     school: 'HZ University of Applied Sciences, Vlissingen, Netherlands',
+    details:
+      'Placeholder: this section will describe exchange-semester focus areas and cross-cultural collaboration outcomes.',
+    highlights: [
+      'Placeholder: international technical collaboration',
+      'Placeholder: ICT-focused practical coursework',
+      'Placeholder: broadened academic perspective',
+    ],
   },
 ];
 
 const experiences: ExperienceItem[] = [
   {
-    time: 'Current',
+    time: '12/2025 - Current',
     title: 'Data Science & Data Engineering Intern',
-    meta: 'Bosch · Internship',
+    meta: 'Bosch · Linz · Internship · Part-time',
     description:
-      'Building and improving data/ML pipelines, preparing datasets, and supporting production-focused analytics.',
-    stack: 'Python · SQL · Data Engineering · Machine Learning',
+      'Building and improving data/ML pipelines, preparing datasets, and supporting production-focused analytics. 25 hours a week.',
+    stack: 'Python · Data Engineering · Machine Learning · Databricks · PySpark',
     featured: true,
     current: true,
   },
   {
     time: '09/2024 - 02/2025',
     title: 'Data Warehouse Management Intern',
-    meta: 'Oesterreichische Kontrollbank AG · Vienna · On-site',
+    meta: 'Oesterreichische Kontrollbank AG · Vienna · On-site · Full-time',
     description:
       'Handled large datasets, supported warehouse architecture, and delivered reporting from financial data cubes.',
     stack: 'SQL · SSMS · Data Warehousing · XLCubed',
@@ -134,15 +165,15 @@ const experiences: ExperienceItem[] = [
   {
     time: '07/2024 - 08/2024',
     title: 'Software Engineering Intern',
-    meta: 'Bitmovin · Vienna · Hybrid',
+    meta: 'Bitmovin · Vienna · Hybrid · Full-time',
     description: 'Built a RAG chatbot prototype for live-stream video content.',
-    stack: 'TypeScript · Python · LangChain · LLM · RAG',
+    stack: 'TypeScript · Python · LangChain · LLM · RAG · LlamaIndex',
   },
   {
     time: '02/2024 - 06/2024',
-    title: 'IT Intern (Part-time)',
-    meta: 'dAIp Solutions s.r.o. · Remote',
-    description: 'Prepared RAG datasets and supported AI-focused web development tasks.',
+    title: 'IT Intern',
+    meta: 'dAIp Solutions s.r.o. · Remote · Part-time',
+    description: 'Prepared datasets for RAG and supported web development tasks.',
     stack: 'Python · Pandas · LangChain · JavaScript',
   },
 ];
@@ -153,6 +184,13 @@ const projects: ProjectItem[] = [
     meta: 'Bachelor Thesis',
     description:
       'Built a real-time chatbot for sports live-streams and compared RAG vs. CAG configurations for LLM-based response quality.',
+    details:
+      'Placeholder: this area will contain the full project story, architecture decisions, and evaluation approach.',
+    highlights: [
+      'Placeholder challenge statement',
+      'Placeholder architecture / pipeline breakdown',
+      'Placeholder result metrics and learnings',
+    ],
     stack: 'Python · LLM · RAG · CAG',
     variant: 'a',
   },
@@ -161,6 +199,13 @@ const projects: ProjectItem[] = [
     meta: '1st Place · ViennaUP Hackathon 2025',
     description:
       'Co-developed an AI early warning system for supply chains with an agent-based pipeline.',
+    details:
+      'Placeholder: this area will include end-to-end implementation details, team ownership, and demo outcomes.',
+    highlights: [
+      'Placeholder scope and constraints',
+      'Placeholder core AI components',
+      'Placeholder business impact summary',
+    ],
     stack: 'Google Cloud · Gemini · React · Docker',
     variant: 'b',
   },
@@ -169,6 +214,13 @@ const projects: ProjectItem[] = [
     meta: 'Industry Internship Project',
     description:
       'Designed a retrieval pipeline and conversational flow for fast-answering assistants in streaming scenarios.',
+    details:
+      'Placeholder: this section will describe data flow, retrieval strategy, and operational tradeoffs.',
+    highlights: [
+      'Placeholder ingestion and indexing notes',
+      'Placeholder prompt and context strategy',
+      'Placeholder monitoring and iteration plan',
+    ],
     stack: 'TypeScript · Python · LangChain · LLM Ops',
     variant: 'c',
   },
@@ -203,11 +255,11 @@ const strengths: Strength[] = [
 const sectionIds: SectionId[] = [
   'home',
   'about',
-  'subjects',
   'education',
   'experience',
   'projects',
   'skills',
+  'subjects',
   'publications',
   'contact',
 ];
@@ -215,6 +267,8 @@ const sectionIds: SectionId[] = [
 function App() {
   const [activeSection, setActiveSection] = useState<SectionId>('home');
   const [selectedSubject, setSelectedSubject] = useState<SubjectItem>(favoriteSubjects[0]);
+  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const [selectedEducation, setSelectedEducation] = useState<EducationItem | null>(null);
 
   useEffect(() => {
     const revealElements = document.querySelectorAll<HTMLElement>('.reveal');
@@ -261,6 +315,47 @@ function App() {
     return () => sectionObserver.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!selectedProject && !selectedEducation) {
+      return;
+    }
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setSelectedProject(null);
+        setSelectedEducation(null);
+      }
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleEscape);
+    };
+  }, [selectedProject, selectedEducation]);
+
+  const createPlaceholderImage = (label: string, heading = 'Preview') =>
+    `data:image/svg+xml,${encodeURIComponent(
+      `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 675'>
+        <defs>
+          <linearGradient id='g' x1='0' x2='1' y1='0' y2='1'>
+            <stop offset='0%' stop-color='#0f2f4a'/>
+            <stop offset='50%' stop-color='#233c6a'/>
+            <stop offset='100%' stop-color='#4b2b6f'/>
+          </linearGradient>
+        </defs>
+        <rect width='1200' height='675' fill='url(#g)'/>
+        <circle cx='180' cy='130' r='130' fill='#67e8f9' fill-opacity='0.15'/>
+        <circle cx='1040' cy='560' r='170' fill='#f0abfc' fill-opacity='0.14'/>
+        <text x='50%' y='44%' text-anchor='middle' fill='#bde7ff' font-family='Arial, sans-serif' font-size='42' font-weight='700'>${heading}</text>
+        <text x='50%' y='54%' text-anchor='middle' fill='#dbeafe' font-family='Arial, sans-serif' font-size='30'>${label}</text>
+        <text x='50%' y='66%' text-anchor='middle' fill='#94a3b8' font-family='Arial, sans-serif' font-size='24'>(Placeholder Image)</text>
+      </svg>`,
+    )}`;
+
   return (
     <>
       <div className="background-orb orb-a" aria-hidden="true" />
@@ -306,14 +401,15 @@ function App() {
       <main>
         <section id="home" className="section section-hero hero reveal visible">
           <div className="hero-copy">
+            <p className="hero-name">Patrik Palencar</p>
             <p className="eyebrow">Master's AI Student · Linz, Austria</p>
             <h1>
-              Building <span className="gradient-word">flashy</span>, practical AI systems for
-              real-world use.
+              Building <span className="gradient-word">data-centric</span> AI systems for
+              real-world impact.
             </h1>
             <p className="lead">
-              AI master's student with hands-on experience in RAG, LLM-powered applications, data
-              warehousing, and software engineering. I am seeking a part-time role in AI/ML
+              AI master's student with hands-on experience in LLM-powered applications, AI engineering, data
+              engineering, and software engineering. I am seeking a part-time role in AI/ML
               engineering.
             </p>
             <div className="hero-actions">
@@ -331,55 +427,34 @@ function App() {
               <span>2026</span>
             </div>
             <ul>
-              <li>MSc in Artificial Intelligence at JKU Linz</li>
-              <li>Exploring LSTM, Transformers, and modern ML pipelines</li>
-              <li>Building robust AI features from data to interface</li>
+              <li>MSc in Artificial Intelligence at Johannes Kepler University Linz</li>
+              <li>Focused on deep understanding of Transformers, LSTM and modern deep learning architectures</li>
+              <li>Building and deploying data-centric ML systems</li>
+              <li>Designing agentic AI systems to automate workflows</li>
             </ul>
           </aside>
         </section>
 
         <section id="about" className="section section-about reveal">
           <div className="split-heading">
-            <h2>About Me</h2>
-            <p className="section-kicker">Precision + execution + curiosity</p>
+            <h2>My AI Journey</h2>
           </div>
           <div className="about-layout">
             <p>
-              I am <strong>BSc. Patrik Palencar</strong>, currently studying a Master's Degree in
-              Artificial Intelligence at Johannes Kepler University in Linz. I enjoy solving
-              practical problems with applied AI, robust software engineering, and data-driven
-              thinking.
+              Since my final high-school years,I’ve been fascinated by the possibilities of artificial intelligence
+              to transform the way we interact with data and systems. In 2022, I started my Bachelor&apos;s
+              studies in Informatics with a Data Science and AI focus at IMC University of Applied
+              Sciences, and this path led me to continue with a Master&apos;s Degree in Artificial
+              Intelligence at Johannes Kepler University Linz. I am dedicated to combine theory
+              with practical engineering to design AI systems that deliver real-world impact.
             </p>
+            <p className="about-kicker">Precision + execution + curiosity</p>
             <div className="impact-box">
-              <p>1st Place · ViennaUP Hackathon 2025</p>
-              <p>4 AI-focused internship experiences</p>
               <p>BSc with Data Science &amp; AI focus</p>
+              <p>4 Data-focused internship experiences</p>
+              <p>AI master student</p>
+              <p>1st Place · ViennaUP Hackathon 2025</p>
             </div>
-          </div>
-        </section>
-
-        <section id="subjects" className="section section-subjects reveal">
-          <div className="split-heading">
-            <h2>Favorite University Subjects</h2>
-            <p className="section-kicker">Courses that shaped my AI direction</p>
-          </div>
-          <div className="subjects-layout">
-            <div className="subjects-bento">
-              {favoriteSubjects.map((subject, idx) => (
-                <button
-                  key={subject.title}
-                  type="button"
-                  className={`subject-card variant-${(idx % 4) + 1}${selectedSubject.title === subject.title ? ' selected' : ''}`}
-                  onClick={() => setSelectedSubject(subject)}
-                >
-                  <h3>{subject.title}</h3>
-                </button>
-              ))}
-            </div>
-            <article className="subject-description">
-              <h3>{selectedSubject.title}</h3>
-              <p>{selectedSubject.description}</p>
-            </article>
           </div>
         </section>
 
@@ -391,11 +466,19 @@ function App() {
           <div className="education-layout">
             <div className="timeline">
               {education.map((item) => (
-                <article key={`${item.time}-${item.degree}`} className="timeline-item">
+                <button
+                  key={`${item.time}-${item.degree}`}
+                  type="button"
+                  className="timeline-item timeline-item-button"
+                  onClick={() => {
+                    setSelectedProject(null);
+                    setSelectedEducation(item);
+                  }}
+                >
                   <p className="time">{item.time}</p>
                   <h3>{item.degree}</h3>
                   <p>{item.school}</p>
-                </article>
+                </button>
               ))}
             </div>
             <aside className="education-side">
@@ -430,17 +513,26 @@ function App() {
 
         <section id="projects" className="section section-projects reveal">
           <div className="split-heading">
-            <h2>Selected Projects</h2>
+            <h2>My Projects</h2>
             <p className="section-kicker">Applied ML systems and prototypes</p>
           </div>
           <div className="projects-bento">
             {projects.map((item) => (
-              <article key={item.title} className={`card project-card variant-${item.variant}`}>
+              <button
+                type="button"
+                key={item.title}
+                className={`card project-card variant-${item.variant}`}
+                onClick={() => {
+                  setSelectedEducation(null);
+                  setSelectedProject(item);
+                }}
+              >
                 <h3>{item.title}</h3>
                 <p className="meta">{item.meta}</p>
                 <p>{item.description}</p>
                 <p className="stack">{item.stack}</p>
-              </article>
+                <p className="project-open-hint">Click to view more</p>
+              </button>
             ))}
           </div>
         </section>
@@ -482,6 +574,31 @@ function App() {
           </div>
         </section>
 
+        <section id="subjects" className="section section-subjects reveal">
+          <div className="split-heading">
+            <h2>Favorite University Subjects</h2>
+            <p className="section-kicker">Courses that shaped my AI direction</p>
+          </div>
+          <div className="subjects-layout">
+            <div className="subjects-bento">
+              {favoriteSubjects.map((subject, idx) => (
+                <button
+                  key={subject.title}
+                  type="button"
+                  className={`subject-card variant-${(idx % 4) + 1}${selectedSubject.title === subject.title ? ' selected' : ''}`}
+                  onClick={() => setSelectedSubject(subject)}
+                >
+                  <h3>{subject.title}</h3>
+                </button>
+              ))}
+            </div>
+            <article className="subject-description">
+              <h3>{selectedSubject.title}</h3>
+              <p>{selectedSubject.description}</p>
+            </article>
+          </div>
+        </section>
+
         <section id="publications" className="section section-publications reveal">
           <h2>Publications</h2>
           <article className="publication">
@@ -492,6 +609,9 @@ function App() {
               analysis of Retrieval-Augmented Generation and Cache-Augmented Generation
               strategies.
             </p>
+            <a className="button ghost thesis-button" href="/Real-time_chatbot_for_live-stream_content_thesis.pdf" download>
+              Download Thesis
+            </a>
           </article>
         </section>
 
@@ -505,8 +625,78 @@ function App() {
         </section>
       </main>
 
+      {selectedEducation ? (
+        <div
+          className="project-modal-backdrop"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="education-modal-title"
+          onClick={() => setSelectedEducation(null)}
+        >
+          <article className="project-modal education-modal" onClick={(event) => event.stopPropagation()}>
+            <button
+              type="button"
+              className="project-modal-close"
+              onClick={() => setSelectedEducation(null)}
+              aria-label="Close education details"
+            >
+              ×
+            </button>
+            <img
+              className="project-modal-image"
+              src={createPlaceholderImage(selectedEducation.degree, 'Education Preview')}
+              alt={`${selectedEducation.degree} placeholder preview`}
+            />
+            <h3 id="education-modal-title">{selectedEducation.degree}</h3>
+            <p className="meta">{selectedEducation.time}</p>
+            <p>{selectedEducation.school}</p>
+            <p>{selectedEducation.details}</p>
+            <ul className="project-modal-list">
+              {selectedEducation.highlights.map((highlight) => (
+                <li key={highlight}>{highlight}</li>
+              ))}
+            </ul>
+          </article>
+        </div>
+      ) : null}
+
+      {selectedProject ? (
+        <div
+          className="project-modal-backdrop"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="project-modal-title"
+          onClick={() => setSelectedProject(null)}
+        >
+          <article className="project-modal" onClick={(event) => event.stopPropagation()}>
+            <button
+              type="button"
+              className="project-modal-close"
+              onClick={() => setSelectedProject(null)}
+              aria-label="Close project details"
+            >
+              ×
+            </button>
+            <img
+              className="project-modal-image"
+              src={createPlaceholderImage(selectedProject.title, 'Project Preview')}
+              alt={`${selectedProject.title} placeholder preview`}
+            />
+            <h3 id="project-modal-title">{selectedProject.title}</h3>
+            <p className="meta">{selectedProject.meta}</p>
+            <p>{selectedProject.details}</p>
+            <ul className="project-modal-list">
+              {selectedProject.highlights.map((highlight) => (
+                <li key={highlight}>{highlight}</li>
+              ))}
+            </ul>
+            <p className="stack">{selectedProject.stack}</p>
+          </article>
+        </div>
+      ) : null}
+
       <footer>
-        <div className="footer-content">
+        <div className="footer-content bg-cyan">
           <p>{new Date().getFullYear()} Patrik Palencar · AI / ML Engineering Portfolio</p>
           <div className="footer-actions">
             <a href="mailto:palencar330@gmail.com">palencar330@gmail.com</a>
